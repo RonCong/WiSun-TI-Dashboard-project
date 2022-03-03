@@ -23,18 +23,20 @@ function Home() {
   return (
     <div className="app">
       <Layout className="layout">
-        <PageHeader
-          className="site-page-header"
-          title="Your NetWork"
-          extra={
-            <>
-              <span style={{ fontSize: '16px', fontWeight: '700' }}> Time: </span><Select defaultValue={timeSlot} style={{ width: 120 }} onChange={handleChange}>
-                <Option value={0}>00:00-08:00</Option>
-                <Option value={1}>00:00-16:00</Option>
-                <Option value={2}>00:00-24:00</Option>
-              </Select>
-            </>}
+        <div className="site-page-header-ghost-wrapper">
+          <PageHeader
+            className="site-page-header"
+            title= "Your Wi-SUN Information"
+            extra={
+              <>
+                <span style={{ fontSize: '16px', fontWeight: '700' }}> Time: </span><Select defaultValue={timeSlot} style={{ width: 120 }} onChange={handleChange}>
+                  <Option value={0}>00:00-08:00</Option>
+                  <Option value={1}>00:00-16:00</Option>
+                  <Option value={2}>00:00-24:00</Option>
+                </Select>
+              </>}
         />
+        </div>
         <Content style={{ padding: "0 50px" }} >
           <main className="site-layout-content" >
             <Row>

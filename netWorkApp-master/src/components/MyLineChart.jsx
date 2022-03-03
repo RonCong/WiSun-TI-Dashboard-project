@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 function MyLineChart(props) {
   const initOption = {
     title: {
-      text: 'NetWork'
+      text: 'Wi-SUN Node Data'
     },
     tooltip: {
       trigger: 'axis'

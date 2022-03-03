@@ -3,13 +3,27 @@
     padding: 0;
 }
 
-.site-layout-content {
-    min-height: 600px;
-    padding: 24px;
-    background: #fff;
+.site-page-header{
+    color: #ECECEC !important;
+}
+
+.site-page-header-ghost-wrapper {
+    background: #CC0000;
 }
 
 .site-layout-content .first {
+    background: #FFF;
+    border-top: 5px solid #CC0000;
+
     display: flex;
     justify-content: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-top: 50px;
+
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.background-div {
+    background-color: black;
 }
