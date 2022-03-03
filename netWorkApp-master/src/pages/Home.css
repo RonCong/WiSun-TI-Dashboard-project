@@ -10,26 +10,6 @@
 }
 
 .site-layout-content .first {
-    height: 400px;
-}
-
-.site-layout-content .second {
-    display: flex;
-    justify-content: space-evenly;
-    height: 400px;
-}
-
-.site-layout-content .third {
-    height: 400px;
-
-}
-
-.site-layout-content .fourth {
-    height: 400px;
-}
-
-.site-layout-content .fifth {
     display: flex;
     justify-content: center;
-    height: 500px;
 }
