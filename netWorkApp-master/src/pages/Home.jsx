@@ -48,6 +48,9 @@ function Home() {
             </Row>
           </main>
         </Content>
+        <Footer style={{ textAlign: "center", background: "#ECECEC"}}>
+          
+        </Footer>
       </Layout>
     </div >
   );
