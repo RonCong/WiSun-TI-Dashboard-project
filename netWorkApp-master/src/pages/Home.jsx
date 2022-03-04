@@ -26,7 +26,7 @@ function Home() {
         <div className="site-page-header-ghost-wrapper">
           <PageHeader
             className="site-page-header"
-            title= "Your Wi-SUN Information"
+            title="Motion/Noise Sensor Dashboard"
             extra={
               <>
                 <span style={{ fontSize: '16px', fontWeight: '700' }}> Time: </span><Select defaultValue={timeSlot} style={{ width: 120 }} onChange={handleChange}>

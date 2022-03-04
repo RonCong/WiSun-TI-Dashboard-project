@@ -4,13 +4,13 @@ import { useState, useEffect } from "react";
 function MyLineChart(props) {
   const initOption = {
     title: {
-      text: 'Wi-SUN Node Data'
+      text: 'Sensor Noise Data'
     },
     tooltip: {
       trigger: 'axis'
     },
     legend: {
-      data: ['One', 'Two', 'Three', 'Four', 'Five'],
+      data: ['Node1', 'Node2', 'Node3', 'Node4', 'Node5'],
     },
     grid: {
       left: '3%',
@@ -33,34 +33,29 @@ function MyLineChart(props) {
     },
     series: [
       {
-        name: 'One',
+        name: 'Node1',
         type: 'line',
-        stack: 'Total',
-        data: [120, 132, 101, 134, 90, 230, 210]
+        data: [25, 35, 35, 70, 65, 70, 100]
       },
       {
-        name: 'Two',
+        name: 'Node2',
         type: 'line',
-        stack: 'Total',
-        data: [220, 182, 191, 234, 290, 330, 310]
+        data: [40, 52, 51, 64, 60, 65, 70]
       },
       {
-        name: 'Three',
+        name: 'Node3',
         type: 'line',
-        stack: 'Total',
-        data: [150, 232, 201, 154, 190, 330, 410]
+        data: [30, 32, 37, 44, 49, 52, 60]
       },
       {
-        name: 'Four',
+        name: 'Node4',
         type: 'line',
-        stack: 'Total',
-        data: [320, 332, 301, 334, 390, 330, 320]
+        data: [30, 33, 30, 34, 39, 30, 40]
       },
       {
-        name: 'Five',
+        name: 'Node5',
         type: 'line',
-        stack: 'Total',
-        data: [820, 932, 901, 934, 1290, 1330, 1320]
+        data: [80, 92, 90, 93, 120, 130, 132]
       }
     ]
   };
