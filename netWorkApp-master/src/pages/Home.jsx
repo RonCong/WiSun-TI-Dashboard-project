@@ -48,9 +48,6 @@ function Home() {
             </Row>
           </main>
         </Content>
-        <Footer style={{ textAlign: "center" }}>
-          NetWork ©2022 Created by EvilKind
-        </Footer>
       </Layout>
     </div >
   );

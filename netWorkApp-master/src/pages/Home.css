@@ -7,6 +7,14 @@
     color: #ECECEC !important;
 }
 
+.ant-page-header-heading-title {
+    color: #ECECEC !important;
+}
+
+.ant-layout-content {
+    background: #ECECEC;
+}
+
 .site-page-header-ghost-wrapper {
     background: #CC0000;
 }
