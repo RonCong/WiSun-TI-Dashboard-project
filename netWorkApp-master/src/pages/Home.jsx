@@ -37,7 +37,7 @@ function Home() {
               </>}
         />
         </div>
-        <Content style={{ padding: "0 50px" }} >
+        <Content style={{ padding: "0 50px"}} >
           <main className="site-layout-content" >
             <Row>
               <Col span={24}>

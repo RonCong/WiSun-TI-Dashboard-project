@@ -6,6 +6,9 @@ function MyLineChart(props) {
     title: {
       text: 'Sensor Noise Data'
     },
+    textStyle: {
+      fontFamily: 'Raleway'
+    },
     tooltip: {
       trigger: 'axis'
     },
@@ -84,7 +87,7 @@ function MyLineChart(props) {
 
   return (
     <>
-      <div id="MyLineChart" style={{ width: '85vw', height: '80vh', }}></div>
+      <div id="MyLineChart" style={{ width: '85vw', height: '80vh', fontFamily: "'Raleway', sans-serif"}}></div>
     </>
   )
 }

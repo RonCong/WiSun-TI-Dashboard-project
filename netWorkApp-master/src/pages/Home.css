@@ -1,18 +1,22 @@
 * {
     margin: 0;
     padding: 0;
+    
 }
 
 .site-page-header{
     color: #ECECEC !important;
+    font-family: 'Raleway', sans-serif;
 }
 
 .ant-page-header-heading-title {
     color: #ECECEC !important;
+    font-family: 'Raleway', sans-serif;
 }
 
 .ant-layout-content {
     background: #ECECEC;
+    
 }
 
 .site-page-header-ghost-wrapper {
