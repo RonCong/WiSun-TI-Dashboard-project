@@ -1,7 +1,14 @@
 import * as echarts from "echarts";
 import { useState, useEffect } from "react";
 
+
 function MyLineChart(props) {
+  
+  
+  fetch('http://localhost:3000/api/recent')
+    .then(response => response.json())
+    .then(data => console.log(data))
+
   const initOption = {
     title: {
       text: 'Sensor Noise Data'

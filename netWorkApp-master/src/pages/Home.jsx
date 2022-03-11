@@ -11,6 +11,7 @@ import {
 
 const { Content, Footer } = Layout;
 const { Option } = Select;
+
 function Home() {
   const [timeSlot, setTimeSlot] = useState(2);
 
