@@ -147,10 +147,6 @@ function MyLineChart() {
 
         testLineChart.hideLoading()
         testLineChart.setOption({
-          grid: {
-            bottom: '7%',
-            right: '8%'
-          },
           legend: {
             data: sensorNames,
             left: '20%'
