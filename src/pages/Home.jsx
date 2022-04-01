@@ -47,8 +47,8 @@ function Home() {
     //Getting dates, subtracting hours, and formatting them for the query
     let averageMaxMinDate = new Date()
     let averageMaxMaxDate = new Date()
-    averageMaxMinDate.setDate(averageMaxMinDate.getDate() - 7)
-    averageMaxMaxDate.setDate(averageMaxMaxDate.getDate() - 6)
+    averageMaxMinDate.setDate(averageMaxMinDate.getDate())
+    averageMaxMaxDate.setDate(averageMaxMaxDate.getDate())
     averageMaxMinDate.setHours(averageMaxMinDate.getHours() - averageMaxTimeMin)
     averageMaxMaxDate.setHours(averageMaxMaxDate.getHours() - averageMaxTimeMax)
     let formattedAverageMinDate = formatDateForDB(averageMaxMinDate)
