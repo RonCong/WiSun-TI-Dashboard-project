@@ -7,10 +7,10 @@ function MyLineChart() {
   let urlString = '';
 
   if(import.meta.env.MODE === 'development') {
-    urlString = 'localhost:3000'
+    urlString = 'http://localhost:3000'
   }
   else if(import.meta.env.MODE === 'production') {
-    urlString = 'wisun-demo.herokuapp.com'
+    urlString = 'https://wisun-demo.herokuapp.com'
   }
 
   //Function for getting the current date, and formatting it for the url for the database query
@@ -96,7 +96,7 @@ function MyLineChart() {
     let formattedDate = formatDateForDB(unformattedDate) //Formatting for the http request, and subsequent db query
 
     testLineChart.showLoading()
-    fetch(`http://${urlString}/api/since?t=${formattedDate}`)
+    fetch(`${urlString}/api/since?t=${formattedDate}`)
       .then((response) => response.json())
       .then((data) => {
         //Variables for storing values

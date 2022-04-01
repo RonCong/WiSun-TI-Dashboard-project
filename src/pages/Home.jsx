@@ -17,10 +17,10 @@ function Home() {
   let urlString = '';
 
   if(import.meta.env.MODE === 'development') {
-    urlString = 'localhost:3000'
+    urlString = 'http://localhost:3000'
   }
   else if(import.meta.env.MODE === 'production') {
-    urlString = 'wisun-demo.herokuapp.com'
+    urlString = 'https://wisun-demo.herokuapp.com'
   }
 
   const [averageMaxTimeMin, setAverageMaxTimeMin] = useState(24)
@@ -54,7 +54,7 @@ function Home() {
     let formattedAverageMinDate = formatDateForDB(averageMaxMinDate)
     let formattedAverageMaxDate = formatDateForDB(averageMaxMaxDate)
 
-    fetch(`http://${urlString}/api/noiseReading/max?start=${formattedAverageMinDate}&stop=${formattedAverageMaxDate}`)
+    fetch(`${urlString}/api/noiseReading/max?start=${formattedAverageMinDate}&stop=${formattedAverageMaxDate}`)
       .then(firstResponse => firstResponse.json())
       .then(firstData => {
         let numNodes = firstData?.values?.length
@@ -62,7 +62,7 @@ function Home() {
           tempMaxData.push(firstData?.values[i]?.value)
           tempSensorNames.push(firstData?.values[i]?.sensor)
         }
-        return fetch(`http://${urlString}/api/noiseReading/average?start=${formattedAverageMinDate}&stop=${formattedAverageMaxDate}`)
+        return fetch(`${urlString}/api/noiseReading/average?start=${formattedAverageMinDate}&stop=${formattedAverageMaxDate}`)
           .then(secondResponse => secondResponse.json())
           .then(secondData => {
               
@@ -86,7 +86,7 @@ function Home() {
   }
 
   const getRecentMotion = async () => {
-    fetch(`http://${urlString}/api/recent/motionReading?v=1`)
+    fetch(`${urlString}/api/recent/motionReading?v=1`)
     .then(response => response.json())
     .then(data => {
       let numNodes = data?.motionReading?.length
