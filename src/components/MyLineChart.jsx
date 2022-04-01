@@ -4,12 +4,21 @@ import { useState, useEffect } from "react";
 
 function MyLineChart() {
 
+  let urlString = '';
+
+  if(import.meta.env.MODE === 'development') {
+    urlString = 'localhost:3000'
+  }
+  else if(import.meta.env.MODE === 'production') {
+    urlString = 'wisun-demo.herokuapp.com'
+  }
+
   //Function for getting the current date, and formatting it for the url for the database query
   function formatDateForDB(dateToBeFormatted) {
     function pad(stringPad) { return stringPad < 10 ? '0' + stringPad : stringPad }
     return dateToBeFormatted.getUTCFullYear() + '-'
       + pad(dateToBeFormatted.getUTCMonth() + 1) + '-'
-      + pad(dateToBeFormatted.getUTCDate() - 7) + 'T'
+      + pad(dateToBeFormatted.getUTCDate()) + 'T'
       + pad(dateToBeFormatted.getUTCHours()) + ':'
       + pad(dateToBeFormatted.getUTCMinutes()) + ':'
       + pad(dateToBeFormatted.getUTCSeconds()) + 'Z'
@@ -83,10 +92,11 @@ function MyLineChart() {
     testLineChart.setOption(option)
 
     let unformattedDate = new Date()
+    unformattedDate.setDate(unformattedDate.getDate() - 7)
     let formattedDate = formatDateForDB(unformattedDate) //Formatting for the http request, and subsequent db query
 
     testLineChart.showLoading()
-    fetch(`http://localhost:3000/api/since?t=${formattedDate}`)
+    fetch(`http://${urlString}/api/since?t=${formattedDate}`)
       .then((response) => response.json())
       .then((data) => {
         //Variables for storing values
@@ -95,8 +105,6 @@ function MyLineChart() {
         let currentDataLength = 0
         let sensorSeriesData = []
         let totalSensorDataLength = data?.noiseReading?.length;
-        console.log(`Total Data Length: ${totalSensorDataLength}`)
-        console.log(data)
 
         //The loop below populates two arrays:
         //  The first is an array of strings. Each element is a sensor name (no duplicates)
@@ -147,6 +155,10 @@ function MyLineChart() {
 
         testLineChart.hideLoading()
         testLineChart.setOption({
+          grid: {
+            bottom: '7%',
+            right: '8%'
+          },
           legend: {
             data: sensorNames,
             left: '20%'

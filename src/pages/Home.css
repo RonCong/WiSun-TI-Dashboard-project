@@ -16,11 +16,14 @@
 
 .ant-layout-content {
   background: #ECECEC;
-
 }
 
 .site-page-header-ghost-wrapper {
   background: #CC0000;
+}
+
+.ant-slider {
+  position: absolute;
 }
 
 .site-layout-content .first {
@@ -40,8 +43,24 @@
   display: flex;
   justify-content: space-evenly;
   background: #FFF;
+  border-top: 5px solid #CC0000;
 
-  padding: 10px 20px 30px 20px;
+  padding: 50px 20px 30px 20px;
+  margin-top: 50px;
+  height: auto;
+
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.site-layout-content .third {
+  display: flex;
+  justify-content: space-evenly;
+  background: #FFF;
+  border-top: 5px solid #CC0000;
+
+  padding: 50px 20px 30px 20px;
+  margin-top: 50px;
+  height: auto;
 
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
