@@ -107,7 +107,7 @@ function Home() {
   useEffect(() => {
     getMaxData()
     getRecentMotion()
-  }, [])
+  }, [averageMaxTimeMin, averageMaxTimeMax])
 
   const columns1 = [
     {
@@ -165,7 +165,7 @@ function Home() {
             <Row>
               <Col span={24}>
                 <div className="second">
-                  <h2>Node Statistics</h2>
+                  <h2>Sensor Noise Maximum and Average</h2>
                   <Table title={() => (<Slider max='24' onAfterChange={onAfterChange1} range tooltipVisible defaultValue={[0, 24]} />)} columns={columns1} bordered dataSource={averageMaxData} pagination={{ position: ['none', 'none'] }} />
                 </div>
               </Col>
@@ -173,7 +173,7 @@ function Home() {
             <Row>
               <Col span={24}>
                 <div className="third">
-                  <h2>Recent Motion Detection</h2>
+                  <h2>Recent Motion Detection on Each Sensor</h2>
                   <Table columns={columns2} bordered dataSource={recentData} pagination={{ position: ['none', 'none'] }} />
                 </div>
               </Col>

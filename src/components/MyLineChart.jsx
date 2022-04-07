@@ -171,6 +171,9 @@ function MyLineChart() {
           },
           series: sensorSeriesData
         })
+      }).catch(err => {
+        console.log("Failed fetching chart data")
+        console.log(err)
       })
   })
 
