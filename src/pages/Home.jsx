@@ -43,6 +43,11 @@ function Home() {
       + pad(dateToBeFormatted.getUTCSeconds()) + 'Z'
   }
 
+  function formatDateForDisplay(givenUTCDate) {
+    var convDate = new Date(givenUTCDate)
+    return convDate.toString()
+  }
+
   const getMaxData = async () => {
     //Getting dates, subtracting hours, and formatting them for the query
     let averageMaxMinDate = new Date()
@@ -58,14 +63,26 @@ function Home() {
       .then(firstResponse => firstResponse.json())
       .then(firstData => {
         let numNodes = firstData?.values?.length
+        let nodeCodename = ''
         for(var i = 0; i < numNodes; i++) {
+          if (data?.motionReading[i]?.sensor.substring(20) == '14f8:2b6a') {
+            nodeCodename = 'Tango'
+          } else if (data?.motionReading[i]?.sensor.substring(20) == '14f9:425b') {
+            nodeCodename = 'Alfa'
+          } else if (data?.motionReading[i]?.sensor.substring(20) == '14f8:2af0') {
+            nodeCodename = 'Romeo'
+          } else if (data?.motionReading[i]?.sensor.substring(20) == '14f9:430d') {
+            nodeCodename = 'Yankee'
+          } else {
+            nodeCodename = data?.motionReading[i]?.sensor
+          }
           tempMaxData.push(firstData?.values[i]?.value)
-          tempSensorNames.push(firstData?.values[i]?.sensor)
+          tempSensorNames.push(nodeCodename)
         }
         return fetch(`${urlString}/api/noiseReading/average?start=${formattedAverageMinDate}&stop=${formattedAverageMaxDate}`)
           .then(secondResponse => secondResponse.json())
           .then(secondData => {
-              
+            tempSensorNames.sort()
             for(var i = 0; i < numNodes; i++) {
               tempAverageMaxData.push({
                 key: i,
@@ -90,13 +107,26 @@ function Home() {
     .then(response => response.json())
     .then(data => {
       let numNodes = data?.motionReading?.length
+      let nodeCodename = ''
       for(var i = 0; i < numNodes; i++) {
+        if (data?.motionReading[i]?.sensor.substring(20) == '14f8:2b6a') {
+          nodeCodename = 'Tango'
+        } else if (data?.motionReading[i]?.sensor.substring(20) == '14f9:425b') {
+          nodeCodename = 'Alfa'
+        } else if (data?.motionReading[i]?.sensor.substring(20) == '14f8:2af0') {
+          nodeCodename = 'Romeo'
+        } else if (data?.motionReading[i]?.sensor.substring(20) == '14f9:430d') {
+          nodeCodename = 'Yankee'
+        } else {
+          nodeCodename = data?.motionReading[i]?.sensor
+        }
         tempRecentData.push({
           key: i,
-          Node: data?.motionReading[i]?.sensor,
-          MotionDetectedTime: data?.motionReading[i]?.time
+          Node: nodeCodename,
+          MotionDetectedTime: formatDateForDisplay(data?.motionReading[i]?.time)
         })
       }
+      tempRecentData.sort((a,b) => a.Node.localeCompare(b.Node))
       setRecentData(tempRecentData)
     }).catch(err => {
       console.error('Failed while fetching recent data')

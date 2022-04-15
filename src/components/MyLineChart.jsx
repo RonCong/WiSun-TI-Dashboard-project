@@ -24,6 +24,22 @@ function MyLineChart() {
       + pad(dateToBeFormatted.getUTCSeconds()) + 'Z'
   }
 
+  function convertRawNodeToCodename(rawNodeName) {
+    let nodeCodename = ''
+    if (rawNodeName.substring(20) == '14f8:2b6a') {
+      nodeCodename = 'Tango'
+    } else if (rawNodeName.substring(20) == '14f9:425b') {
+      nodeCodename = 'Alfa'
+    } else if (rawNodeName.substring(20) == '14f8:2af0') {
+      nodeCodename = 'Romeo'
+    } else if (rawNodeName.substring(20) == '14f9:430d') {
+      nodeCodename = 'Yankee'
+    } else {
+      nodeCodename = rawNodeName
+    }
+    return nodeCodename
+  }
+
   const initOption = {
     title: {
       text: 'Sensor Noise Data'
@@ -111,12 +127,14 @@ function MyLineChart() {
         //  The second is an array of ints. Each element is the length of the sensor of the same index in the array above's data.
         //    So, sensorNames[0] is the name of the first sensor in the response, and sensorDataLengths[0] is the length of that sensor's data
         for (var x = 0; x < totalSensorDataLength; x++) {
+          let currentCodename = convertRawNodeToCodename(data?.noiseReading[x]?.sensor)
           currentDataLength = currentDataLength + 1
-          if (!sensorNames.includes(data?.noiseReading[x]?.sensor)) {
-            sensorNames.push(data?.noiseReading[x]?.sensor)
+          if (!sensorNames.includes(currentCodename)) {
+            sensorNames.push(currentCodename)
           }
           if ((x + 1) != totalSensorDataLength) {
-            if (!sensorNames.includes(data?.noiseReading[x + 1]?.sensor)) {
+            currentCodename = convertRawNodeToCodename(data?.noiseReading[x+1]?.sensor)
+            if (!sensorNames.includes(currentCodename)) {
               sensorDataLengths.push(currentDataLength)
               currentDataLength = 0
             }
@@ -172,8 +190,8 @@ function MyLineChart() {
           series: sensorSeriesData
         })
       }).catch(err => {
-        console.log("Failed fetching chart data")
-        console.log(err)
+        console.error("Failed fetching chart data")
+        console.error(err)
       })
   })
 
