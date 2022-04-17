@@ -45,8 +45,15 @@ function Home() {
 
   function formatDateForDisplay(givenUTCDate) {
     var convDate = new Date(givenUTCDate)
-    return convDate.toString()
+    return convDate.toString().substring(0, 24)
   }
+
+  function truncate(n, digits) {
+    var step = Math.pow(10, digits || 0);
+    var temp = Math.trunc(step * n);
+
+    return temp / step;
+}
 
   const getMaxData = async () => {
     //Getting dates, subtracting hours, and formatting them for the query
@@ -65,18 +72,19 @@ function Home() {
         let numNodes = firstData?.values?.length
         let nodeCodename = ''
         for(var i = 0; i < numNodes; i++) {
-          if (data?.motionReading[i]?.sensor.substring(20) == '14f8:2b6a') {
+          if (firstData?.values[i]?.sensor.substring(20) == '14f8:2b6a') {
             nodeCodename = 'Tango'
-          } else if (data?.motionReading[i]?.sensor.substring(20) == '14f9:425b') {
-            nodeCodename = 'Alfa'
-          } else if (data?.motionReading[i]?.sensor.substring(20) == '14f8:2af0') {
+          } else if (firstData?.values[i]?.sensor.substring(20) == '14f9:425b') {
+            nodeCodename = 'Bravo'
+          } else if (firstData?.values[i]?.sensor.substring(20) == '14f8:2af0') {
             nodeCodename = 'Romeo'
-          } else if (data?.motionReading[i]?.sensor.substring(20) == '14f9:430d') {
+          } else if (firstData?.values[i]?.sensor.substring(20) == '14f9:430d') {
             nodeCodename = 'Yankee'
           } else {
-            nodeCodename = data?.motionReading[i]?.sensor
+            nodeCodename = firstData?.values[i]?.sensor
           }
-          tempMaxData.push(firstData?.values[i]?.value)
+          console.log(firstData?.values[i]?.value)
+          tempMaxData.push(truncate(firstData?.values[i]?.value, 2))
           tempSensorNames.push(nodeCodename)
         }
         return fetch(`${urlString}/api/noiseReading/average?start=${formattedAverageMinDate}&stop=${formattedAverageMaxDate}`)
@@ -88,7 +96,7 @@ function Home() {
                 key: i,
                 Node: tempSensorNames[i],
                 Max: tempMaxData[i],
-                Average: secondData?.values[i]?.value
+                Average: truncate(secondData?.values[i]?.value, 2)
               })
             }
             setAverageMaxData(tempAverageMaxData)
@@ -112,7 +120,7 @@ function Home() {
         if (data?.motionReading[i]?.sensor.substring(20) == '14f8:2b6a') {
           nodeCodename = 'Tango'
         } else if (data?.motionReading[i]?.sensor.substring(20) == '14f9:425b') {
-          nodeCodename = 'Alfa'
+          nodeCodename = 'Bravo'
         } else if (data?.motionReading[i]?.sensor.substring(20) == '14f8:2af0') {
           nodeCodename = 'Romeo'
         } else if (data?.motionReading[i]?.sensor.substring(20) == '14f9:430d') {

@@ -29,7 +29,7 @@ function MyLineChart() {
     if (rawNodeName.substring(20) == '14f8:2b6a') {
       nodeCodename = 'Tango'
     } else if (rawNodeName.substring(20) == '14f9:425b') {
-      nodeCodename = 'Alfa'
+      nodeCodename = 'Bravo'
     } else if (rawNodeName.substring(20) == '14f8:2af0') {
       nodeCodename = 'Romeo'
     } else if (rawNodeName.substring(20) == '14f9:430d') {
