@@ -193,11 +193,11 @@ function MyLineChart() {
         console.error("Failed fetching chart data")
         console.error(err)
       })
-  })
+  }, [])
 
   return (
     <>
-      <div id="MyLineChart" style={{ width: '85vw', height: '80vh', fontFamily: "'Raleway', sans-serif" }}></div>
+      <div id="MyLineChart" style={{ width: '65vw', height: '80vh', fontFamily: "'Raleway', sans-serif" }}></div>
     </>
   )
 }

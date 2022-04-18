@@ -194,24 +194,18 @@ function Home() {
         <Content style={{ padding: "0 50px" }} >
           <main className="site-layout-content" >
             <Row>
-              <Col span={24}>
+              <Col span={17}>
                 <div className="first">
                   <MyLineChart></MyLineChart>
                 </div>
               </Col>
-            </Row>
-            <Row>
-              <Col span={24}>
+              <Col span={7}>
                 <div className="second">
-                  <h2>Sensor Noise Maximum and Average</h2>
+                  <h3 className = "fourth">Sensor Noise Maximum and Average</h3>
                   <Table title={() => (<Slider max='24' onAfterChange={onAfterChange1} range tooltipVisible defaultValue={[0, 24]} />)} columns={columns1} bordered dataSource={averageMaxData} pagination={{ position: ['none', 'none'] }} />
                 </div>
-              </Col>
-            </Row>
-            <Row>
-              <Col span={24}>
                 <div className="third">
-                  <h2>Recent Motion Detection on Each Sensor</h2>
+                  <h3>Recent Motion Detection on Each Sensor</h3>
                   <Table columns={columns2} bordered dataSource={recentData} pagination={{ position: ['none', 'none'] }} />
                 </div>
               </Col>
