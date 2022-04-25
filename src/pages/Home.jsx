@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import MyLineChart from '../components/MyLineChart'
+import MotionChart from '../components/MotionChart'
 import "./Home.css";
 import {
   Layout,
@@ -61,8 +62,8 @@ function Home() {
     let averageMaxMaxDate = new Date()
     averageMaxMinDate.setDate(averageMaxMinDate.getDate())
     averageMaxMaxDate.setDate(averageMaxMaxDate.getDate())
-    averageMaxMinDate.setHours(averageMaxMinDate.getHours() - averageMaxTimeMin)
-    averageMaxMaxDate.setHours(averageMaxMaxDate.getHours() - averageMaxTimeMax)
+    averageMaxMinDate.setDate(averageMaxMinDate.getDate() - averageMaxTimeMin)
+    averageMaxMaxDate.setDate(averageMaxMaxDate.getDate() - averageMaxTimeMax)
     let formattedAverageMinDate = formatDateForDB(averageMaxMinDate)
     let formattedAverageMaxDate = formatDateForDB(averageMaxMaxDate)
 
@@ -83,7 +84,6 @@ function Home() {
           } else {
             nodeCodename = firstData?.values[i]?.sensor
           }
-          console.log(firstData?.values[i]?.value)
           tempMaxData.push(truncate(firstData?.values[i]?.value, 2))
           tempSensorNames.push(nodeCodename)
         }
@@ -202,8 +202,17 @@ function Home() {
               <Col span={7}>
                 <div className="second">
                   <h3 className = "fourth">Sensor Noise Maximum and Average</h3>
-                  <Table title={() => (<Slider max='24' onAfterChange={onAfterChange1} range tooltipVisible defaultValue={[0, 24]} />)} columns={columns1} bordered dataSource={averageMaxData} pagination={{ position: ['none', 'none'] }} />
+                  <Table title={() => (<Slider max='7' onAfterChange={onAfterChange1} range tooltipVisible defaultValue={[0, 7]} />)} columns={columns1} bordered dataSource={averageMaxData} pagination={{ position: ['none', 'none'] }} />
                 </div>
+              </Col>
+            </Row>
+            <Row>
+              <Col span={17}>
+                <div className="fifth">
+                  <MotionChart></MotionChart>
+                </div>
+              </Col>
+              <Col span={7}>
                 <div className="third">
                   <h3>Recent Motion Detection on Each Sensor</h3>
                   <Table columns={columns2} bordered dataSource={recentData} pagination={{ position: ['none', 'none'] }} />
