@@ -42,7 +42,7 @@ function MotionChart() {
 
   const initOption = {
     title: {
-      text: 'Sensor Noise Data'
+      text: 'Sensor Motion Data'
     },
     textStyle: {
       fontFamily: 'Raleway'
@@ -60,13 +60,13 @@ function MotionChart() {
       {
         type: 'slider',
         show: true,
-        start: 94,
+        start: 99.9,
         end: 100,
         handleSize: 8
       },
       {
         type: 'inside',
-        start: 94,
+        start: 99.9,
         end: 100
       },
       {
@@ -106,6 +106,8 @@ function MotionChart() {
     const chartDom = document.getElementById("MotionChart")
     var testLineChart = echarts.init(chartDom)
     testLineChart.setOption(option)
+    testLineChart.group = 'group1'
+    echarts.connect('group1')
 
     let unformattedDate = new Date()
     unformattedDate.setDate(unformattedDate.getDate() - 7)
