@@ -117,7 +117,6 @@ function MotionChart() {
     fetch(`${urlString}/api/since?t=${formattedDate}&r=motionReading`)
       .then((response) => response.json())
       .then((data) => {
-          console.log(data?.motionReading)
         //Variables for storing values
         let sensorNames = []
         let sensorDataLengths = []
@@ -173,6 +172,9 @@ function MotionChart() {
             data: currentSensorData
           })
         }
+
+        sensorSeriesData.sort((a,b) => a.name.localeCompare(b.name))
+        sensorNames.sort()
 
         testLineChart.hideLoading()
         testLineChart.setOption({

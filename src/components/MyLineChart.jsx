@@ -173,6 +173,9 @@ function MyLineChart() {
           })
         }
 
+        sensorSeriesData.sort((a,b) => a.name.localeCompare(b.name))
+        sensorNames.sort()
+
         testLineChart.hideLoading()
         testLineChart.setOption({
           grid: {
